@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panshul Sharma | Computer Science &amp; AI student</title>
+<meta name="description" content="Panshul Sharma is a Computer Science and AI student and aspiring AI engineer. Selected work: MOTRIX, a cinematic BMW M-Series showcase, TrustPack, a package-versus-source integrity analyzer, and CalcHub, a client-side calculator suite.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Panshul Sharma | Computer Science &amp; AI student">
+<meta property="og:description" content="Aspiring AI engineer. Selected work: MOTRIX, TrustPack and CalcHub.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="styles.css">
+<script>
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.add('js');
+    setTimeout(function () { document.documentElement.classList.add('js-fallback'); }, 2500);
+  }
+</script>
+</head>
+<body>
+<a class="skip" href="#work">Skip to work</a>
+<div class="progress" aria-hidden="true"></div>
+
+<header class="bar">
+  <div class="wrap bar__in">
+    <a class="bar__brand" href="#top" aria-label="Panshul Sharma, back to top"><span class="bar__full">Panshul Sharma</span><span class="bar__ps" aria-hidden="true">PS</span></a>
+    <nav class="bar__nav" aria-label="Main">
+      <ul>
+        <li><a href="#work" data-nav="work">Work</a></li>
+        <li><a href="#about" data-nav="about">About</a></li>
+        <li><a href="#contact" data-nav="contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="wrap hero__in">
+      <div>
+        <p class="eyebrow" data-in><span>Portfolio</span><span>2026</span></p>
+        <div class="hero__rule" aria-hidden="true"></div>
+      </div>
+
+      <h1 id="hero-h" class="display hero__name" data-split><span>Panshul</span> <span>Sharma</span></h1>
+
+      <div class="hero__grid">
+        <div class="hero__copy">
+          <p class="hero__role" data-in>Computer Science &amp; AI student.<br>Aspiring AI engineer.</p>
+          <p class="hero__bio" data-in>Curious about technology, drawn to problem-solving, and building what's next.</p>
+          <div class="actions" data-in>
+            <a class="btn btn--solid" href="#work">See the work
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" aria-hidden="true"><path d="M12 4v15M6 13l6 6 6-6"/></svg>
+            </a>
+            <a class="btn btn--line" href="mailto:panshulsharma111@gmail.com">Email me</a>
+          </div>
+        </div>
+        <dl class="facts" data-in>
+          <div><dt>Studying</dt><dd>Computer Science &amp; AI</dd></div>
+          <div><dt>Aiming for</dt><dd>AI engineering</dd></div>
+          <div><dt>Projects</dt><dd>MOTRIX, TrustPack, CalcHub</dd></div>
+          <div><dt>Elsewhere</dt><dd><a href="https://github.com/psl-0007" target="_blank" rel="noopener">GitHub</a>, <a href="https://www.linkedin.com/in/panshul-sharma-0b4011401/" target="_blank" rel="noopener">LinkedIn</a></dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section id="work" aria-labelledby="work-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="work-h" class="display">Selected work</h2>
+        <p class="sec-count" aria-hidden="true">(03)</p>
+      </div>
+
+      <!-- A screenshot or demo clip can slot in as a figure inside .work__main when available. -->
+      <article class="work" aria-labelledby="work-1">
+        <div class="work__rule" aria-hidden="true"></div>
+        <div class="work__grid">
+          <p class="work__num" aria-hidden="true">01</p>
+          <div class="work__main">
+            <p class="work__kind" data-reveal>Cinematic web showcase</p>
+            <h3 id="work-1" class="display work__title" data-wipe>MOTRIX</h3>
+            <p class="work__lead" data-reveal>A cinematic BMW M-Series showcase website with immersive animations, interactive car cards, smooth scrolling and dynamic visual storytelling.</p>
+            <ul class="chips" aria-label="Built with" data-reveal>
+              <li class="chip">React</li><li class="chip">Vite</li><li class="chip">JavaScript</li><li class="chip">GSAP</li><li class="chip">ScrollTrigger</li><li class="chip">CSS3</li>
+            </ul>
+            <div class="links" data-reveal>
+              <a class="link" href="https://github.com/psl-0007/MOTRIX" target="_blank" rel="noopener">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="work" aria-labelledby="work-2">
+        <div class="work__rule" aria-hidden="true"></div>
+        <div class="work__grid">
+          <p class="work__num" aria-hidden="true">02</p>
+          <div class="work__main">
+            <p class="work__kind" data-reveal>Software supply-chain security</p>
+            <h3 id="work-2" class="display work__title" data-wipe>TrustPack</h3>
+            <p class="work__sub" data-reveal>Published package vs source code integrity analyzer</p>
+            <p class="work__lead" data-reveal>Verifies whether published npm and PyPI packages match their GitHub source repositories. It separates legitimate build artifacts from suspicious modifications, verifies package provenance, and gives evidence-based risk assessments so developers can spot supply-chain attacks.</p>
+            <ul class="feats" data-reveal>
+              <li>Source-to-package comparison</li>
+              <li>Suspicious modification detection</li>
+              <li>Provenance verification</li>
+              <li>Risk assessment</li>
+              <li>Automated release monitoring</li>
+            </ul>
+            <ul class="chips" aria-label="Built with" data-reveal>
+              <li class="chip">Python</li><li class="chip">FastAPI</li><li class="chip">React</li><li class="chip">JavaScript</li>
+            </ul>
+            <div class="links" data-reveal>
+              <a class="link" href="https://trustpack.dpdns.org/new" target="_blank" rel="noopener">Open live demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" aria-hidden="true"><path d="M6 18 18 6M8 6h10v10"/></svg></a>
+              <a class="link" href="https://github.com/mr-peppermint/TrustPack" target="_blank" rel="noopener">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="work" aria-labelledby="work-3">
+        <div class="work__rule" aria-hidden="true"></div>
+        <div class="work__grid">
+          <p class="work__num" aria-hidden="true">03</p>
+          <div class="work__main">
+            <p class="work__kind" data-reveal>Client-side calculator suite</p>
+            <h3 id="work-3" class="display work__title" data-wipe>CalcHub</h3>
+            <p class="work__lead" data-reveal>A client-side calculator suite with 18 tools, from scientific and unit conversion to BMI, loan EMI and date maths, powered by a custom eval-free expression parser.</p>
+            <ul class="feats" data-reveal>
+              <li>18 calculator tools</li>
+              <li>Scientific &amp; unit conversion</li>
+              <li>BMI, loan EMI and date maths</li>
+              <li>Custom eval-free expression parser</li>
+              <li>Runs entirely client-side</li>
+            </ul>
+            <ul class="chips" aria-label="Built with" data-reveal>
+              <li class="chip">React 18</li><li class="chip">TypeScript (strict)</li><li class="chip">Vite</li><li class="chip">Tailwind CSS</li><li class="chip">React Router</li>
+            </ul>
+            <div class="links" data-reveal>
+              <a class="link" href="https://github.com/psl-0007/calchub" target="_blank" rel="noopener">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="about" class="about" aria-labelledby="about-h">
+    <div class="wrap">
+      <h2 id="about-h">About</h2>
+      <p class="about__text">I'm a Computer Science &amp; AI student and an aspiring AI engineer, a curious mind passionate about technology, problem-solving, and <em>building what's next.</em></p>
+    </div>
+  </section>
+
+  <section id="contact" class="contact" aria-labelledby="contact-h">
+    <div class="wrap">
+      <div class="contact__top">
+        <h2 id="contact-h" class="display contact__title" data-reveal>Let's talk.</h2>
+        <span class="mag-zone">
+          <a class="mag" href="mailto:panshulsharma111@gmail.com" aria-label="Email Panshul Sharma">Email
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" aria-hidden="true"><path d="M6 18 18 6M8 6h10v10"/></svg>
+          </a>
+        </span>
+      </div>
+      <ul class="rows">
+        <li data-reveal><a class="row" href="mailto:panshulsharma111@gmail.com"><span class="row__k">Email</span><span class="row__v">panshulsharma111@gmail.com</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a></li>
+        <li data-reveal><a class="row" href="https://github.com/psl-0007" target="_blank" rel="noopener"><span class="row__k">GitHub</span><span class="row__v">psl-0007</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a></li>
+        <li data-reveal><a class="row" href="https://www.linkedin.com/in/panshul-sharma-0b4011401/" target="_blank" rel="noopener"><span class="row__k">LinkedIn</span><span class="row__v">Panshul Sharma</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <span>&copy; 2026 Panshul Sharma</span>
+    <a class="link" href="#top">Back to top
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" aria-hidden="true"><path d="M12 20V5M6 11l6-6 6 6"/></svg>
+    </a>
+  </div>
+</footer>
+
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script src="vendor/SplitText.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+# OS and editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Dependencies and build output (none yet, kept for when a toolchain is added)
+node_modules/
+dist/
+.cache/
+
+# Logs and secrets
+*.log
+.env
+.env.*
+
+# AI tooling and local design-check artefacts
+.agents/
+.claude/
+skills-lock.json
+.taste-skill/
+shots/
+_previous-build/
+assets/
+
+# Unused leftover from the first design (page no longer references it)
+share.jpg
