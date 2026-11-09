@@ -1,0 +1,72 @@
+/* fx:pinhead. Pinned "Selected work" header, left column, >= 900px, motion allowed.
+   Everything is scoped under html.fx-pinhead (added by fx/pinhead.js only while the effect is
+   active), so no-JS, reduced-motion and narrow screens keep the original stacked layout.
+
+   Mechanism: CSS position: sticky inside a grid column that spans every article. No ScrollTrigger
+   pin, so it cannot fight pin spacers from other effects, and it unpins by itself when the grid
+   (the last article) ends. */
+
+html.fx-pinhead {
+  --pinhead-w: clamp(220px, 22vw, 320px);   /* header column */
+  --pinhead-gap: clamp(24px, 3vw, 48px);    /* between header column and articles */
+  --pinhead-top: calc(var(--bar) + 24px);   /* stuck position, just under the fixed bar */
+}
+
+/* Two columns: header | articles. Row gap 0 so the empty implicit rows the header spans add no space. */
+html.fx-pinhead #work > .wrap {
+  display: grid;
+  grid-template-columns: var(--pinhead-w) minmax(0, 1fr);
+  column-gap: var(--pinhead-gap);
+  row-gap: 0;
+  align-items: start;
+  padding-top: clamp(56px, 10vh, 112px);   /* the offset .sec-head used to carry */
+}
+
+html.fx-pinhead #work .sec-head {
+  grid-column: 1;
+  grid-row: 1 / span 12;                   /* spans every article row, however many there are */
+  align-self: start;
+  position: sticky;
+  top: var(--pinhead-top);
+  display: block;
+  padding-block: clamp(24px, 4vh, 40px) 0; /* lines up with the article's rule + padding */
+  border-top: 4px solid var(--ink);        /* echoes each article's .work__rule */
+}
+html.fx-pinhead #work .sec-head h2 {
+  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+  overflow-wrap: normal;
+}
+html.fx-pinhead #work .sec-count {
+  margin-top: 16px;
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+}
+
+/* Articles (and any pin spacer another effect wraps them in) live in column 2. */
+html.fx-pinhead #work > .wrap > .work,
+html.fx-pinhead #work > .wrap > .pin-spacer {
+  grid-column: 2;
+  min-width: 0;
+}
+
+/* The articles are now ~560-810px wide instead of ~1170px. Size their internals from the boxes the
+   text actually sits in (container query units), not from the viewport and not from the article,
+   so padding that another effect adds to a card cannot push a title out of its column.
+     .work__grid  = container for the number (its own columns use % of its content box)
+     .work__main  = container for the title */
+html.fx-pinhead #work .work__grid {
+  container: pinhead-grid / inline-size;
+  grid-template-columns: clamp(64px, 14%, 120px) minmax(0, 1fr);
+  column-gap: clamp(16px, 2vw, 28px);   /* cqw would resolve against an ancestor here, not this grid */
+}
+html.fx-pinhead #work .work__num {
+  font-size: calc(clamp(64px, 14cqw, 120px) / 1.85);   /* "01" fills its column */
+  -webkit-text-stroke-width: 1.5px;
+}
+html.fx-pinhead #work .work__main {
+  container: pinhead-main / inline-size;
+  min-width: 0;
+}
+/* "TRUSTPACK" is ~8.1em wide; 8.4 leaves a little headroom so the longest title never overflows. */
+html.fx-pinhead #work .work__title {
+  font-size: calc(100cqw / 8.4);
+}

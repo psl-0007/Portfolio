@@ -1,0 +1,5 @@
+/* fx:hero-exit. Everything is scoped to html.fx-hero-exit, which fx/hero-exit.js sets only while
+   motion is allowed, so no-JS, reduced-motion and failure states are untouched. */
+html.fx-hero-exit .hero__name > .kh-row,
+html.fx-hero-exit .hero__name > span { will-change: transform; }
+html.fx-hero-exit .hero__grid { will-change: opacity; }

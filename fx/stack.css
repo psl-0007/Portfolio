@@ -1,0 +1,33 @@
+/* fx:stack — "overlapping deck" for #work. Everything is scoped to html.fx-stack, which
+   fx/stack.js only adds while the effect is active (>=900px, fine pointer, motion allowed),
+   so without JS / with reduced motion / on touch the page is exactly as before. */
+
+html.fx-stack #work .work {
+  position: relative;               /* z-index is set per card in JS so later cards cover earlier ones */
+  background: var(--card);
+  border: var(--border);
+  box-shadow: var(--shadow);
+  padding-bottom: 0;                /* replaces the plain-flow padding with the card's own padding below */
+  margin-bottom: clamp(32px, 6vh, 64px);
+  transform-origin: 50% 0;          /* shrinks toward the top edge so the stack's tops stay put */
+}
+html.fx-stack #work .work:last-child { margin-bottom: clamp(48px, 8vh, 96px); }
+
+html.fx-stack #work .work__grid {
+  padding: clamp(20px, 3.5vh, 36px) clamp(20px, 2.5vw, 36px) clamp(24px, 4vh, 40px);
+}
+
+/* The card's own padding narrows the text column, so the giant titles are sized from that column
+   (container query units) instead of the viewport: the longest, TRUSTPACK, is ~8em wide, so 11cqi
+   leaves headroom. It also keeps working if another layout narrows the column further. */
+@supports (font-size: 1cqi) {
+  html.fx-stack #work .work__main { container-type: inline-size; }
+  html.fx-stack #work .work__title { font-size: clamp(2.25rem, 11cqi, 6rem); }
+}
+
+/* Tighter vertical rhythm inside a stacked card, so the tallest card (TrustPack) fits more laptop
+   windows. The deck only runs when every pinned card fits the viewport. */
+html.fx-stack #work .feats { margin-top: 16px; }
+html.fx-stack #work .feats li { padding-block: 8px; }
+html.fx-stack #work .chips { margin-top: 16px; }
+html.fx-stack #work .links { margin-top: 16px; }

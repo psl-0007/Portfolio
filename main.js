@@ -141,6 +141,23 @@
 
       var cleanups = [];
 
+      // Smooth scroll (Lenis), driven by GSAP's ticker so ScrollTrigger and Lenis share one clock.
+      // Only runs inside this motion block, so reduced-motion users keep native scrolling. Touch
+      // stays native (Lenis default). anchors:true smooth-scrolls #links and honours the
+      // scroll-padding-top that clears the fixed header.
+      if (window.Lenis) {
+        var lenis = new Lenis({ anchors: true });
+        lenis.on('scroll', ScrollTrigger.update);
+        var lenisTick = function (time) { lenis.raf(time * 1000); };
+        gsap.ticker.add(lenisTick);
+        gsap.ticker.lagSmoothing(0);
+        cleanups.push(function () {
+          gsap.ticker.remove(lenisTick);
+          gsap.ticker.lagSmoothing(500, 33); // GSAP's defaults
+          lenis.destroy();
+        });
+      }
+
       // Scroll progress (transform only).
       gsap.to('.progress', {
         scaleX: 1,

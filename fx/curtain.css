@@ -1,0 +1,62 @@
+/* fx:curtain. Reveal of the dark #contact + footer beneath the rising page content.
+
+   Two classes, both set by fx/curtain.js on <html>:
+     fx-curtain-skin  contact + footer take a dark palette (any motion preference, JS only)
+     fx-curtain       the reveal itself: contact + footer anchored under the content (sticky)
+   Without JS nothing here applies and the page is exactly as before. */
+
+/* ---------- dark skin ---------- */
+/* Components read semantic tokens, so swapping them here re-derives every state (row hover
+   inverts to light-on-dark, focus ring, tile, borders) with no extra component rules. --border
+   and --shadow are re-declared because custom properties resolve var() where they are defined,
+   not where they are used. Same values as the dark colour scheme, so in that scheme contact is
+   unchanged and in the light scheme it becomes dark. */
+html.fx-curtain-skin .contact,
+html.fx-curtain-skin .foot {
+  --bg: #09090b;
+  --ink: #fafafa;
+  --muted: #a1a1aa;
+  --accent: #60a5fa;
+  --on-accent: #09090b;
+  --card: #111113;
+  --border: 2px solid var(--ink);
+  --shadow: 6px 6px 0 var(--ink);
+  background: var(--bg);
+  color: var(--ink);
+}
+/* Hard 4px rule on top of contact: separates it from the (also dark, in the light scheme) About
+   band and doubles as the curtain's lower edge. Inset, so it adds no layout. */
+html.fx-curtain-skin .contact { box-shadow: inset 0 4px 0 0 var(--accent); }
+
+/* ---------- the reveal ---------- */
+/* Everything above contact becomes the curtain: it must cover what sits beneath it. :where()
+   keeps these at zero specificity so a section's own background / position / z-index wins. */
+:where(html.fx-curtain #top > :not(#contact)) {
+  position: relative;
+  z-index: 1;
+  background: var(--bg);
+}
+
+/* Contact and footer stay in flow (page height unchanged) but are held to the viewport bottom
+   until their natural position catches up. --curtain-foot (set from JS) stacks contact on top of
+   the footer. They paint beneath the sections above (z-index 0 < 1). */
+html.fx-curtain #contact {
+  position: sticky;
+  bottom: var(--curtain-foot, 0px);
+  z-index: 0;
+}
+html.fx-curtain .foot {
+  position: sticky;
+  bottom: 0;
+  z-index: 0;
+}
+
+/* The curtain's lower edge, painted over the layer beneath it. Matches the inset rule above. */
+html.fx-curtain .about { box-shadow: 0 4px 0 0 #60a5fa; }
+
+/* The heading grows from its baseline as it is uncovered (scale driven by ScrollTrigger). */
+html.fx-curtain .contact__title { transform-origin: left bottom; will-change: transform; }
+
+/* The reveal is the entrance now: rows are in place from the first frame the curtain uncovers
+   them (main.js' own fade-up is timed to the natural layout and would play out of sight). */
+html.fx-curtain .rows [data-reveal] { opacity: 1 !important; transform: none !important; }

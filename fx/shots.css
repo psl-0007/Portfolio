@@ -1,0 +1,143 @@
+/* fx:shots — dark glass preview frames inside .work__main.
+   Everything is scoped under html.fx-shots (set by fx/shots.js, which also removes the `hidden`
+   attribute). The tilt-specific bits sit under html.fx-shots-motion, so reduced motion gets the
+   same frame, flat and static.
+
+   REAL SCREENSHOT SLOT: see the comment in index.html above the first <figure class="shot">. */
+
+html.fx-shots {
+  /* Mirror .work__grid's numeral column and gap, so the frame sits exactly under the 01/02/03.
+     Retune these three if the work grid changes. */
+  --shot-col: clamp(110px, 16vw, 230px);
+  --shot-gap: clamp(16px, 3vw, 48px);
+  --shot-num-h: calc(clamp(3.5rem, 11vw, 9rem) * 0.85); /* .work__num font-size x line-height */
+}
+
+html.fx-shots .work__main { position: relative; }
+
+/* ---------- outer figure: carries the entrance ---------- */
+html.fx-shots .shot {
+  display: block;
+  position: relative;
+  width: min(100%, 320px);
+  height: 132px;              /* compact version above the text (<900px), height capped */
+  margin: 0 0 20px;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* >=900px: sit in the empty numeral column under 01/02/03. Absolutely positioned, so the card
+   does not grow by a single pixel. */
+@media (min-width: 900px) {
+  html.fx-shots .shot {
+    position: absolute;
+    right: calc(100% + var(--shot-gap));
+    top: calc(var(--shot-num-h) + 24px);
+    width: var(--shot-col);
+    height: auto;
+    aspect-ratio: 4 / 3;
+    margin: 0;
+  }
+}
+
+/* ---------- inner body: the dark frame itself, carries the scrub tilt ---------- */
+html.fx-shots .shot__body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  color: #fafafa;             /* the frame stays dark in both themes */
+  background: #0b0c10;
+  border: var(--border);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+html.fx-shots-motion .shot.is-live .shot__body { will-change: transform; }
+
+/* window chrome */
+html.fx-shots .shot__bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: none;
+  height: 28px;
+  padding: 0 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+html.fx-shots .shot__dots { display: flex; gap: 4px; flex: none; }
+html.fx-shots .shot__dots i {
+  display: block;
+  width: 7px;
+  height: 7px;
+  background: rgba(255, 255, 255, 0.38);
+}
+html.fx-shots .shot__dots i:first-child { background: #60a5fa; }
+/* Very narrow frames (a squeezed numeral column): keep the chrome, drop the title text. */
+html.fx-shots .shot { container-type: inline-size; }
+@container (max-width: 140px) {
+  html.fx-shots .shot__name { display: none; }
+  html.fx-shots .shot__bar { height: 22px; padding: 0 8px; }
+}
+html.fx-shots .shot__name {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font: 700 12px/1 var(--font-text);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(250, 250, 250, 0.82);
+}
+
+/* glass screen: accent-tinted gradient orbs behind a translucent, blurred pane */
+html.fx-shots .shot__screen {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 90% at 8% 0%, rgba(96, 165, 250, 0.55), transparent 55%),
+    radial-gradient(90% 80% at 100% 100%, rgba(37, 99, 235, 0.5), transparent 60%),
+    #0b0c10;
+}
+html.fx-shots .shot__motif {
+  position: absolute;
+  inset: 12% 9%;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
+  backdrop-filter: blur(10px) saturate(140%);
+}
+html.fx-shots .shot__motif::before,
+html.fx-shots .shot__motif::after { content: ""; position: absolute; }
+
+/* Abstract per-project motifs, pure CSS and deliberately not UI: no text, numbers or data. */
+
+/* MOTRIX: speed lines and a horizon bar */
+html.fx-shots .shot[data-shot="motrix"] .shot__motif::before {
+  inset: 12% 8% 34% 8%;
+  background: repeating-linear-gradient(105deg, rgba(255, 255, 255, 0.28) 0 1px, transparent 1px 11px);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 45%);
+  mask-image: linear-gradient(90deg, transparent, #000 45%);
+}
+html.fx-shots .shot[data-shot="motrix"] .shot__motif::after {
+  left: 8%; right: 34%; bottom: 14%; height: 6px;
+  background: #60a5fa;
+}
+
+/* TrustPack: two aligned bars compared, one segment differs */
+html.fx-shots .shot[data-shot="trustpack"] .shot__motif::before {
+  inset: 14% 8%;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.6) 0 62%, transparent 62% 66%, rgba(255, 255, 255, 0.3) 66% 100%) 0 6% / 100% 20% no-repeat,
+    linear-gradient(90deg, rgba(255, 255, 255, 0.6) 0 62%, transparent 62% 66%, #60a5fa 66% 100%) 0 62% / 100% 20% no-repeat;
+}
+
+/* CalcHub: a blank keypad grid */
+html.fx-shots .shot[data-shot="calchub"] .shot__motif::before {
+  inset: 10% 8%;
+  background:
+    linear-gradient(90deg, transparent calc(100% - 5px), #0b0c10 0) 0 0 / 25% 100%,
+    linear-gradient(0deg, transparent calc(100% - 5px), #0b0c10 0) 0 0 / 100% 33.34%,
+    rgba(255, 255, 255, 0.24);
+}

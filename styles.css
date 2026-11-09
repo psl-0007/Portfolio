@@ -49,6 +49,18 @@ html {
   html { scroll-behavior: smooth; }
 }
 
+/* Lenis (smooth scroll, from lenis.css). Native smooth scrolling is switched off while it runs,
+   otherwise the two would fight. */
+html.lenis, html.lenis body { height: auto; }
+html.lenis { scroll-behavior: auto !important; }
+.lenis:not(.lenis-autoToggle).lenis-stopped { overflow: clip; }
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch],
+.lenis [data-lenis-prevent-vertical],
+.lenis [data-lenis-prevent-horizontal] { overscroll-behavior: contain; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
 body {
   margin: 0;
   background: var(--bg);
@@ -472,7 +484,7 @@ h1, h2, h3, p, dl, dd { margin: 0; }
   gap: 32px;
 }
 .contact__title { flex: 1 1 20rem; font-size: clamp(3rem, 12vw, 10rem); }
-.mag-zone { flex: none; display: inline-block; padding: 32px; margin: -32px; }
+.mag-zone { flex: none; display: inline-block; padding: 32px; margin: -32px; margin-right: calc(-1 * min(32px, var(--pad))); } /* keeps the invisible hit zone inside the page padding, otherwise it overshoots the viewport by 32px - padding at ~720-760px wide */
 .mag {
   display: inline-flex;
   flex-direction: column;

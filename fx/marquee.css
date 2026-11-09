@@ -1,0 +1,40 @@
+/* fx:marquee. Everything is scoped to html.fx-marquee, which marquee.js only adds while the effect
+   is running. The strip is `hidden` in the markup, so without JS or under reduced motion the page
+   is exactly as it was before. */
+
+html.fx-marquee .strip {
+  display: block;
+  position: relative;
+  overflow: hidden;           /* fallback */
+  overflow: clip;
+  border-top: var(--border);
+  padding-block: clamp(16px, 2.5vw, 32px);
+  background: var(--bg);
+  color: var(--ink);
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+html.fx-marquee .strip__track {
+  display: flex;
+  flex-wrap: nowrap;
+  width: max-content;
+  will-change: transform;
+}
+
+html.fx-marquee .strip__item {
+  flex: none;
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-stretch: 125%;
+  text-transform: uppercase;
+  font-size: clamp(2rem, 6vw, 5.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  /* Texture, not content: a hairline outline at low opacity, same device as the 01/02/03 numerals. */
+  color: transparent;
+  -webkit-text-stroke: 2px var(--ink);
+  opacity: 0.16;
+}

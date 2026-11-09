@@ -13,13 +13,19 @@
 <meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="fonts.css">
-<link rel="stylesheet" href="styles.css?v=4">
+<link rel="stylesheet" href="styles.css?v=5">
 <script>
   if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
     document.documentElement.classList.add('js');
     setTimeout(function () { document.documentElement.classList.add('js-fallback'); }, 2500);
   }
 </script>
+<!-- fx:hero-exit --><link rel="stylesheet" href="fx/hero-exit.css"><!-- /fx:hero-exit -->
+<!-- fx:pinhead --><link rel="stylesheet" href="fx/pinhead.css"><!-- /fx:pinhead -->
+<!-- fx:marquee --><link rel="stylesheet" href="fx/marquee.css"><!-- /fx:marquee -->
+<!-- fx:stack --><link rel="stylesheet" href="fx/stack.css"><!-- /fx:stack -->
+<!-- fx:shots --><link rel="stylesheet" href="fx/shots.css"><!-- /fx:shots -->
+<!-- fx:curtain --><link rel="stylesheet" href="fx/curtain.css"><!-- /fx:curtain -->
 </head>
 <body>
 <a class="skip" href="#work">Skip to work</a>
@@ -82,6 +88,19 @@
         <div class="work__grid">
           <p class="work__num" aria-hidden="true">01</p>
           <div class="work__main">
+            <!-- fx:shots
+                 Decorative PLACEHOLDER frame (aria-hidden, no real UI or data). REAL SCREENSHOT SLOT:
+                 to use a real screenshot, replace the <div class="shot__motif"></div> below with
+                 <img src="..." alt="Describe what the screenshot shows" width="..." height="..."
+                 style="width:100%;height:100%;object-fit:cover;object-position:top">
+                 and delete aria-hidden="true" from this <figure> so the alt text is exposed. -->
+            <figure class="shot" data-shot="motrix" aria-hidden="true" hidden>
+              <div class="shot__body">
+                <div class="shot__bar"><span class="shot__dots"><i></i><i></i><i></i></span><span class="shot__name">MOTRIX</span></div>
+                <div class="shot__screen"><div class="shot__motif"></div></div>
+              </div>
+            </figure>
+            <!-- /fx:shots -->
             <p class="work__kind" data-reveal>Cinematic web showcase</p>
             <h3 id="work-1" class="display work__title" data-wipe>MOTRIX</h3>
             <p class="work__lead" data-lines>A cinematic BMW M-Series showcase website with immersive animations, interactive car cards, smooth scrolling and dynamic visual storytelling.</p>
@@ -100,6 +119,14 @@
         <div class="work__grid">
           <p class="work__num" aria-hidden="true">02</p>
           <div class="work__main">
+            <!-- fx:shots (placeholder frame, see the REAL SCREENSHOT SLOT note on the first one) -->
+            <figure class="shot" data-shot="trustpack" aria-hidden="true" hidden>
+              <div class="shot__body">
+                <div class="shot__bar"><span class="shot__dots"><i></i><i></i><i></i></span><span class="shot__name">TrustPack</span></div>
+                <div class="shot__screen"><div class="shot__motif"></div></div>
+              </div>
+            </figure>
+            <!-- /fx:shots -->
             <p class="work__kind" data-reveal>Software supply-chain security</p>
             <h3 id="work-2" class="display work__title" data-wipe>TrustPack</h3>
             <p class="work__sub" data-reveal>Published package vs source code integrity analyzer</p>
@@ -127,6 +154,14 @@
         <div class="work__grid">
           <p class="work__num" aria-hidden="true">03</p>
           <div class="work__main">
+            <!-- fx:shots (placeholder frame, see the REAL SCREENSHOT SLOT note on the first one) -->
+            <figure class="shot" data-shot="calchub" aria-hidden="true" hidden>
+              <div class="shot__body">
+                <div class="shot__bar"><span class="shot__dots"><i></i><i></i><i></i></span><span class="shot__name">CalcHub</span></div>
+                <div class="shot__screen"><div class="shot__motif"></div></div>
+              </div>
+            </figure>
+            <!-- /fx:shots -->
             <p class="work__kind" data-reveal>Client-side calculator suite</p>
             <h3 id="work-3" class="display work__title" data-wipe>CalcHub</h3>
             <p class="work__lead" data-lines>A client-side calculator suite with 18 tools, from scientific and unit conversion to BMI, loan EMI and date maths, powered by a custom eval-free expression parser.</p>
@@ -148,6 +183,12 @@
       </article>
     </div>
   </section>
+
+  <!-- fx:marquee -->
+  <div class="strip" aria-hidden="true" hidden>
+    <div class="strip__track"><span class="strip__item">AI ENGINEERING • REINFORCEMENT LEARNING • WEB PLATFORMS • DISTRIBUTED SYSTEMS •&nbsp;</span></div>
+  </div>
+  <!-- /fx:marquee -->
 
   <section id="about" class="about" aria-labelledby="about-h">
     <div class="wrap">
@@ -198,6 +239,13 @@
 <script src="vendor/ScrollTrigger.min.js"></script>
 <script src="vendor/SplitText.min.js"></script>
 <script src="vendor/ScrambleTextPlugin.min.js"></script>
-<script src="main.js?v=4"></script>
+<script src="vendor/lenis.min.js"></script>
+<script src="main.js?v=5"></script>
+<!-- fx:curtain --><script src="fx/curtain.js"></script><!-- /fx:curtain -->
+<!-- fx:shots --><script src="fx/shots.js"></script><!-- /fx:shots -->
+<!-- fx:hero-exit --><script src="fx/hero-exit.js"></script><!-- /fx:hero-exit -->
+<!-- fx:pinhead --><script src="fx/pinhead.js"></script><!-- /fx:pinhead -->
+<!-- fx:marquee --><script src="fx/marquee.js"></script><!-- /fx:marquee -->
+<!-- fx:stack --><script src="fx/stack.js"></script><!-- /fx:stack -->
 </body>
 </html>
