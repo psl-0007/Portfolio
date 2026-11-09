@@ -130,7 +130,10 @@
           // About: words light up as you read, scrubbed to scroll. Final state is full ink.
           var aboutText = document.querySelector('.about__text');
           if (aboutText) {
-            var words = SplitText.create(aboutText, { type: 'words' });
+            // aria:'none' keeps the real text in the accessibility tree. The default 'auto' puts
+            // aria-label on the <p> (not a valid target) and aria-hidden on every word, which
+            // leaves screen readers with an empty paragraph. Spans keep the markup valid inside <p>.
+            var words = SplitText.create(aboutText, { type: 'words', tag: 'span', aria: 'none' });
             gsap.fromTo(words.words, { opacity: 0.25 }, {
               opacity: 1,
               ease: 'none',
