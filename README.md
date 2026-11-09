@@ -25,9 +25,11 @@ A single-page static site: no build step, no framework, no third-party requests 
 
 ## Motion (GSAP 3.13.0)
 
-- Hero name rises letter by letter (SplitText).
+- Hero name is a kinetic reveal: every letter has its own entrance (flip, spin, drop, slide, squash, tumble) with a pinwheel, star burst and ring behind A, H and M.
 - Project blocks reveal on scroll: rule draws, title wipes, copy and chips rise.
-- About text lights up word by word, scrubbed to scroll.
+- Project descriptions rise line by line out of a mask (SplitText `mask: 'lines'`, `autoSplit`, `aria: 'none'`).
+- About text plays once on scroll: letter flip, letter pop-in with a drawn flower (stem, bloom, shapes), and a slide-up fade.
+- Contact rows scramble to their value on hover or keyboard focus, fine pointers only (ScrambleTextPlugin). Each link carries a fixed `aria-label` so assistive tech never reads the mid-scramble text.
 - Magnetic "Email" block on pointer devices, scroll progress bar, current-section marker in the nav.
 - All of it is skipped under `prefers-reduced-motion`, and the page is fully readable if JavaScript or GSAP fails to load.
 
@@ -47,7 +49,7 @@ index.html     markup and content
 styles.css     tokens, layout, components, dark theme
 main.js        GSAP animations
 fonts.css      embedded Archivo and Space Grotesk (Latin subset)
-vendor/        GSAP, ScrollTrigger and SplitText 3.13.0 (vendored, no CDN)
+vendor/        GSAP, ScrollTrigger, SplitText and ScrambleTextPlugin 3.13.0 (vendored, no CDN)
 favicon.svg
 ```
 

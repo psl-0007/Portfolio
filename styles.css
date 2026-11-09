@@ -208,7 +208,35 @@ h1, h2, h3, p, dl, dd { margin: 0; }
 .hero__name {
   font-size: clamp(2.75rem, 12.4vw, 11.2rem);
 }
-.hero__name span { display: block; white-space: nowrap; }
+.hero__name > span { display: block; white-space: nowrap; }
+
+/* Kinetic name: JS replaces the two spans with rows of .kh-box letters.
+   .kh-box > (.kh-flair) + .kh-mask > .kh-char */
+.kh-row { display: flex; white-space: nowrap; }
+.kh-box { position: relative; display: inline-block; perspective: 700px; }
+/* The mask clips slide-ins. Padding plus an equal negative margin leave headroom for
+   overshoots and 3D tumbles without changing the layout. */
+.kh-mask {
+  position: relative;
+  z-index: 1;
+  display: block;
+  overflow: hidden;
+  padding: 0.2em;
+  margin: -0.2em;
+}
+.kh-char { display: inline-block; will-change: transform; }
+/* Decorative flairs sit behind their letter. */
+.kh-flair {
+  position: absolute;
+  z-index: 0;
+  left: -25%;
+  top: -12%;
+  width: 150%;
+  height: 124%;
+  pointer-events: none;
+  opacity: 0.9;
+}
+.kh-flair svg { display: block; width: 100%; height: 100%; overflow: visible; }
 .hero__grid {
   display: grid;
   gap: 40px;
@@ -404,6 +432,36 @@ h1, h2, h3, p, dl, dd { margin: 0; }
 }
 .about__text em { font-style: normal; color: var(--inv-accent); }
 
+/* SplitText words/letters are spans here (valid inside <p>); transforms need them inline-block. */
+.about__text [data-fx] span { display: inline-block; }
+
+/* Decorative flower after "aspiring AI engineer,": stem draws, bloom pops, shapes drop in.
+   Sized in em so it scales with the text and sits in the line box without changing its height. */
+.flair {
+  position: relative;
+  display: inline-block;
+  width: 1.15em;
+  height: 0.9em;
+  margin-inline: 0.14em 0.3em;
+  vertical-align: top;
+  pointer-events: none;
+}
+.flair svg, .flair__dot { position: absolute; display: block; }
+/* Taller than the line box on purpose: the bloom sits in the top 60% of the drawing, so the
+   stem hangs down and the bloom reaches roughly cap height. */
+.flair__flower { left: 0; bottom: -0.2em; width: 1.11em; height: 1.25em; overflow: visible; }
+.flair__stem { stroke: var(--inv-accent); }
+.flair__bloom { fill: #ff7a59; }
+.flair__star { width: 0.42em; height: 0.42em; top: -0.12em; right: -0.22em; fill: var(--inv-accent); }
+.flair__dot {
+  width: 0.18em;
+  height: 0.18em;
+  right: -0.04em;
+  bottom: 0.12em;
+  border-radius: 50%;
+  background: #ff7a59;
+}
+
 /* ---------- contact ---------- */
 .contact { padding-block: clamp(64px, 12vh, 128px) clamp(40px, 6vh, 64px); }
 .contact__top {
@@ -496,10 +554,10 @@ h1, h2, h3, p, dl, dd { margin: 0; }
 /* ---------- motion safety ---------- */
 /* Split headline stays hidden only while GSAP is about to animate it; the
    fallback class (set by a timer in <head>) guarantees it can never stay hidden. */
-.js [data-split],
+.js [data-kinetic],
 .js .hero [data-in],
 .js .hero__rule { visibility: hidden; }
-.js-fallback [data-split],
+.js-fallback [data-kinetic],
 .js-fallback .hero [data-in],
 .js-fallback .hero__rule { visibility: visible !important; }
 
